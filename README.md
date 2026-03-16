@@ -2,7 +2,7 @@
 
 ## Threat Remediation & Hardening with Microsoft Sentinel
 
-This project is **Part 2 of my Azure SOC Honeypot Lab**.
+This project is **Part 2 of my [Azure SOC Honeypot Lab](https://github.com/Halomate/Sentinel-Honeypot-SOC-Lab)**.
 In the first project, I deployed a vulnerable VM to attract and monitor real-world attacks using **Microsoft Sentinel** and **Log Analytics**.
 
 In this lab, I move beyond detection and focus on **remediation and security hardening** by analyzing attacker activity and implementing defensive controls.
