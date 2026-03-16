@@ -39,23 +39,7 @@ This lab builds on the previously deployed honeypot environment and focuses on r
 
 ---
 
-# Lab Architecture
-
-Internet Attackers
-↓
-Azure Honeypot VM (RDP exposed)
-↓
-Windows Security Logs
-↓
-Log Analytics Workspace
-↓
-Microsoft Sentinel (Detection & Investigation)
-↓
-Remediation & Hardening Controls
-
----
-
-# Step 4 – Analyze Attacker Activity in Sentinel
+# Step 1 – Analyze Attacker Activity in Sentinel
 
 Using Microsoft Sentinel logs, I analyzed authentication failures to identify brute-force attacks targeting the honeypot.
 
@@ -90,7 +74,7 @@ Screenshots were captured showing attacker IPs and activity trends.
 
 ---
 
-# Step 5 – Create Sentinel Detection Rule
+# Step 2 – Create Sentinel Detection Rule
 
 To automatically detect suspicious activity, a **Sentinel Analytics Rule** was created.
 
@@ -115,9 +99,11 @@ Technique: Brute Force (T1110)
 
 When triggered, this rule automatically generates **incidents in Microsoft Sentinel** for investigation.
 
+![Brute_Force](screenshots/analytics_rule_brute.jpg)
+
 ---
 
-# Step 6 – Incident Investigation
+# Step 3 – Incident Investigation
 
 When alerts were triggered, incidents were investigated through the Sentinel portal.
 
@@ -141,30 +127,25 @@ Using Sentinel investigation graphs allowed correlation between:
 
 ---
 
-# Step 7 – Threat Containment (Blocking Attacker IPs)
+# Step 4 – Incident Response & Investigation
 
-After identifying malicious IP addresses, remediation actions were taken by blocking the attackers at the network layer.
+After identifying malicious IP addresses, remediation actions were taken by first assigning the incident and investigating.
 
 Navigate to:
 
-Azure VM → Networking → Network Security Group
+Sentinel → Incidents → View Full Detail
 
-A new inbound rule was created:
+![Incident_Dashboard](screenshots/incident_dashboard.jpg)
 
-Priority: 100
-Source: Attacker IP Address
-Destination Port: 3389 (RDP)
-Action: Deny
+1. Assign the incident to SOC team member
+2. Change the incident status, put the incident comment
+3. Click Investigate → understand the incident workflow
 
-Example blocked IP:
 
-185.220.101.4
-
-This prevented further RDP access attempts from known malicious sources.
 
 ---
 
-# Step 8 – Harden Network Security Rules
+# Step 5 – Harden Network Security Rules
 
 Initially, the honeypot VM allowed RDP access from any IP address to intentionally attract attacks.
 
@@ -182,14 +163,5 @@ This significantly reduced exposure to automated scanning and brute-force attack
 
 ---
 
-# Step 9 – Enable Microsoft Defender for Cloud Security Recommendations
 
-Microsoft Defender for Cloud was used to identify additional security improvements.
 
-Navigate to:
-
-Microsoft Defender for Cloud → Recommendations
-
-Recommended actions included:
-
-* Enable Just-In-Time VM access
