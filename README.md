@@ -141,7 +141,7 @@ Sentinel → Incidents → View Full Detail
 2. Change the incident status, put the incident comment
 3. Click Investigate → understand the incident workflow
 
-
+![Incident_Workflow](screenshots/Incident_Workflow.jpg)
 
 ---
 
