@@ -1,6 +1,6 @@
-# Azure Cloud SOC Lab – Part II
+# 🛡️ Azure Cloud SOC Lab – Part II
 
-## Threat Remediation & Hardening with Microsoft Sentinel
+## 🔐 Threat Remediation & Hardening with Microsoft Sentinel
 
 This project is **Part 2 of my [Azure SOC Honeypot Lab](https://github.com/Halomate/Sentinel-Honeypot-SOC-Lab)**.
 In the first project, I deployed a vulnerable VM to attract and monitor real-world attacks using **Microsoft Sentinel** and **Log Analytics**.
@@ -13,11 +13,11 @@ Detection → Investigation → Remediation → Hardening
 
 ---
 
-# Lab Overview
+# 📊 Lab Overview
 
 This lab builds on the previously deployed honeypot environment and focuses on reducing attack exposure by implementing security controls within Azure.
 
-## Key Objectives
+## 🎯 Key Objectives
 
 * Analyze attack telemetry collected by Microsoft Sentinel
 * Identify the most common threats targeting the honeypot
@@ -28,7 +28,7 @@ This lab builds on the previously deployed honeypot environment and focuses on r
 
 ---
 
-# Technologies Used
+# 🧰 Technologies Used
 
 * Microsoft Azure
 * Microsoft Sentinel (SIEM)
@@ -39,7 +39,7 @@ This lab builds on the previously deployed honeypot environment and focuses on r
 
 ---
 
-# Step 1 – Analyze Attacker Activity in Sentinel
+# 🔎 Step 1 – Analyze Attacker Activity in Sentinel
 
 Using Microsoft Sentinel logs, I analyzed authentication failures to identify brute-force attacks targeting the honeypot.
 
@@ -74,7 +74,7 @@ Screenshots were captured showing attacker IPs and activity trends.
 
 ---
 
-# Step 2 – Create Sentinel Detection Rule
+# 🚨 Step 2 – Create Sentinel Detection Rule
 
 To automatically detect suspicious activity, a **Sentinel Analytics Rule** was created.
 
@@ -103,7 +103,7 @@ When triggered, this rule automatically generates **incidents in Microsoft Senti
 
 ---
 
-# Step 3 – Incident Investigation
+# 🕵️ Step 3 – Incident Investigation
 
 When alerts were triggered, incidents were investigated through the Sentinel portal.
 
@@ -127,7 +127,7 @@ Using Sentinel investigation graphs allowed correlation between:
 
 ---
 
-# Step 4 – Incident Response & Investigation
+# ⚠️ Step 4 – Incident Response
 
 After identifying malicious IP addresses, remediation actions were taken by first assigning the incident and investigating.
 
@@ -145,21 +145,56 @@ Sentinel → Incidents → View Full Detail
 
 ---
 
-# Step 5 – Harden Network Security Rules
+# 🧱 Step 5 – Harden Network Security Rules
 
 Initially, the honeypot VM allowed RDP access from any IP address to intentionally attract attacks.
 
-To secure the environment, inbound access was restricted.
-
-Previous rule:
-
-Any → Port 3389 → Allow
+To secure the environment, inbound access was restricted to block IPs.
 
 Updated rule:
 
-Trusted IP → Port 3389 → Allow
+Network NSG Group → Create
+
+Destination IP: 1.2.3.0/24 → Source Port Ranges: * → Destination Port Range: 3389 → Deny
 
 This significantly reduced exposure to automated scanning and brute-force attacks.
+
+![Block_IP](screenshots/block_ips.jpg)
+
+---
+# 📚 Lessons Learned
+
+This lab highlighted how quickly exposed services can attract automated attacks from across the internet.
+
+Key takeaways:
+
+* Exposed RDP services are heavily targeted
+* SIEM solutions like Sentinel provide valuable visibility into attack activity
+* Rapid response and network hardening significantly reduce risk
+* Security posture improvements should follow threat detection
+
+---
+
+# 🔄 SOC Workflow Demonstrated
+
+This project demonstrates the full security operations lifecycle:
+
+1. Detection – Monitor attack activity using Microsoft Sentinel
+2. Investigation – Analyze attacker behavior using log queries and incidents
+3. Remediation – Block malicious IP addresses and reduce exposure
+4. Hardening – Implement Defender for Cloud security controls
+
+---
+
+# 🔗 Related Project
+
+This lab builds on my previous project:
+
+[Azure Sentinel SOC Honeypot Lab](https://github.com/Halomate/Sentinel-Honeypot-SOC-Lab)
+
+That project focused on **detecting real-world attacks**, while this project demonstrates **incident response and remediation**.
+
+Together they represent a **complete SOC monitoring and response workflow using Microsoft Sentinel**.
 
 ---
 
