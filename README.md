@@ -1,4 +1,4 @@
-# Azure Cloud SOC Lab – Part 2
+# Azure Cloud SOC Lab – Part II
 
 ## Threat Remediation & Hardening with Microsoft Sentinel
 
