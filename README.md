@@ -24,7 +24,6 @@ This lab builds on the previously deployed honeypot environment and focuses on r
 * Create detection rules for malicious activity
 * Implement remediation steps to block attacker activity
 * Harden the environment to prevent future attacks
-* Measure the reduction of malicious activity after remediation
 
 ---
 
